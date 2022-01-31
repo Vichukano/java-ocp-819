@@ -1,0 +1,11 @@
+plugins {
+	id 'java'
+}
+
+group = 'ru.vichukano'
+version = '1.0.0'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
