@@ -8,14 +8,20 @@ import java.util.*;
  * T extends Number - параметры типа Number = переопределение
  */
 class Base {
+    /**
+     * После компиляции это выглядит так Map getMap(Number t, Number z)
+     */
     public <T extends Number, Z extends Number> Map<T, Z> getMap(T t, Z z) {
         return new HashMap<T, Z>();
     }
 }
 
 class Derived extends Base {
-    //Перегружает метод, здесь T и Z это параметры другого типа так они не T extends Number
-    //Сигнатура одинаковая, список параметров другой
+    /**
+     * Перегружает метод, здесь T и Z это параметры другого типа так они не T extends Number
+     * Сигнатура одинаковая, список параметров другой
+     * После компиляции так TreeMap getMap(Object t, Object z) - параметры Object, а не Number
+     */
     public <T, Z> TreeMap<T, Z> getMap(T t, Z z) {
         return new TreeMap<T, Z>();
     }
@@ -31,7 +37,9 @@ class Derived extends Base {
     //@Override
     //public  Map<Number, Number> getMap(Number t, Number z) { return new TreeMap<Number, Number>(); }; //2
 
-    //Переопределяет метод
+    /**
+     * После компиляции выглядит так Map getMap(Number t, Number z)
+     */
     @Override
     public Map<Integer, Integer> getMap(Number t, Number z) {
         return new HashMap<Integer, Integer>();
@@ -40,6 +48,7 @@ class Derived extends Base {
     /**
      * Перегружает метод, из-за параметорв Integer t, Integer z
      * Если бы это были Number, то метод переопределялся
+     * Map getMap(Integer t, Integer z) - после компиляции
      */
     public Map<Integer, Integer> getMap(Integer t, Integer z) {
         return new HashMap<Integer, Integer>();
