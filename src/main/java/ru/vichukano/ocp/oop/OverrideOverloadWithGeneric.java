@@ -56,7 +56,4 @@ class Derived extends Base {
 }
 
 public class OverrideOverloadWithGeneric {
-    List<? super Number> one = new ArrayList<Number>();
-    List<? super Number> two = new ArrayList<Object>();
-    List<? extends Number> three = new ArrayList<Integer>();
 }
