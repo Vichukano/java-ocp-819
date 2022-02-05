@@ -14,6 +14,9 @@ public class SuperExtendsExample {
         List<? super Number> one = new ArrayList<Number>();
         //Нельзя сделать get без каста
         //Number n = one.get(0);
+        //Можно положить все, что является Number. Смотри тип справа
+        one.add(Integer.valueOf(1));
+        one.add(Double.valueOf(1));
         List<? super Number> two = new ArrayList<Object>();
         //Не скомпилируется
         //List<? super Number> twoo = new ArrayList<Integer>();
