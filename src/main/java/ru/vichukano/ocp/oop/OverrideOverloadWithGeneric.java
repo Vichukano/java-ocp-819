@@ -40,9 +40,15 @@ class Derived extends Base {
     /**
      * После компиляции выглядит так Map getMap(Number t, Number z)
      */
-    @Override
+    /*@Override
     public Map<Integer, Integer> getMap(Number t, Number z) {
         return new HashMap<Integer, Integer>();
+    }*/
+
+    //Разобраться почему это работает, т.к. возвращающий тип не ковариантен
+    @Override
+    public Map<String, String> getMap(Number t, Number z) {
+        return new HashMap<String, String>();
     }
 
     /**
@@ -52,6 +58,41 @@ class Derived extends Base {
      */
     public Map<Integer, Integer> getMap(Integer t, Integer z) {
         return new HashMap<Integer, Integer>();
+    }
+}
+
+/**
+ * Пример переопределения методов с конкретной параметризацией.
+ * Тип должен быть ковариантным
+ */
+class Alpha {
+    Collection<? extends Number> typeExtends() {
+        return new ArrayList<>();
+    }
+
+    Collection<? super Number> typeSuper() {
+        return new ArrayList<>();
+    }
+
+    Collection<Number> concreteType() {
+        return new ArrayList<>();
+    }
+}
+
+class Beta extends Alpha {
+    //Переопределяем, так как extends Number = все что Number и ниже на линии наследования
+    List<Integer> typeExtends() {
+        return null;
+    }
+
+    //Переопределяем, так как super Number = все что Number и выше на линии наследования
+    List<Object> typeSuper() {
+        return null;
+    }
+
+    //Здесь может быть только Number, даже Integer указать нельзя super и extends работать не будут, другой тип работать тоже не будет
+    List<Number> concreteType() {
+        return new ArrayList<>();
     }
 }
 
