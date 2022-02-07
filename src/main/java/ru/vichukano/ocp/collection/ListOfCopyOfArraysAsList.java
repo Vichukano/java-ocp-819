@@ -10,10 +10,12 @@ import java.util.List;
  * Не может содержать null, если в копируемой коллекции есть null, то кинет искльчение
  * <p>
  * Arrays.asList - список фиксированого размера. Добавлять и удалять нельзя, но можно сортировать.
+ * Если список сделан из массива Arrays.asList([]arr), то изменения в массиве ссылочных типов затрагивают созданный на базе этого
+ * массива список
  * <p>
  * Arrays.copyOf - копирование элементов из одного массива в дргой. НЕ глубокая копия, для ссылочных типов данных
  * копируется ссылка. При изменении елемента в оригинальном массиве для ссылочного дататипа изменитя и в копии
- *
+ * <p>
  * List.sublist() - проекция на часть оригинального листа. Если оригинальный лист изменился, то меняется и проектция и наоборот
  */
 public class ListOfCopyOfArraysAsList {
@@ -44,11 +46,13 @@ public class ListOfCopyOfArraysAsList {
         System.out.println("+++++++++++++++++Arrays.copyOf+++++++++++++++++");
         Holder[] arr = {new Holder(1), new Holder(2), new Holder(3)};
         Holder[] copyArr = Arrays.copyOf(arr, 3);
+        List<Holder> asList = Arrays.asList(arr);
         System.out.println("Original arr: " + Arrays.toString(arr));
         System.out.println("Copy of arr: " + Arrays.toString(arr));
         arr[0].setValue(10);
         System.out.println("Original arr after modification: " + Arrays.toString(arr));
         System.out.println("Copy of arr after modification of original: " + Arrays.toString(copyArr));
+        System.out.println("asList of arr after modification of original: " + asList);
     }
 
     static List<String> getList() {
