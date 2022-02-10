@@ -22,5 +22,15 @@ public class SwitchCase {
             default:
                 break;
         }
+        //Варианты, с которыми скомпилируется.
+        //Byte condition = 1;
+        //var condition = new Integer(1);
+        //short condition = (short)1;
+        char condition = 'x';
+        switch( condition ){
+            case 1  : System.out.println("1");   break;
+            case 2  : System.out.println("2");   break;
+            case 3 : System.out.println("3");  break;
+        }
     }
 }
