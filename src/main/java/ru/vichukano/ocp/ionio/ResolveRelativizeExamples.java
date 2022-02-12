@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * relativize - как добраться из одной директории в другую
  * Оба пути должны быть или абсолютными, или относительными, иначе IllegalArgumentException
  */
-public class NIOExamples {
+public class ResolveRelativizeExamples {
 
     public static void main(String[] args) {
         System.out.println("---------resolve---------");
