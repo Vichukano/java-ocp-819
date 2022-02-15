@@ -8,6 +8,9 @@ import java.nio.file.Path;
  * <p>
  * relativize - как добраться из одной директории в другую
  * Оба пути должны быть или абсолютными, или относительными, иначе IllegalArgumentException
+ * <p>
+ * resolveSibling- заменить крайний элемент из пути на other. Если other абсолютный путь или у source нет пути высшего уровня,
+ * то вернет other
  */
 public class ResolveRelativizeExamples {
 
@@ -22,6 +25,10 @@ public class ResolveRelativizeExamples {
         Path iAmHere = Path.of("/home/dir1/dir2");
         Path wantToGetThere = Path.of("/dir3/dir4");
         System.out.println("Path from iAmHere to wantToGetThere:\t" + iAmHere.relativize(wantToGetThere));
+        System.out.println("---------resolveSibling---------");
+        Path p = Path.of("/home/dir1/dir2/.vimrc");
+        Path resolveSibling = p.resolveSibling("test");
+        System.out.println("resolveSibling:\t" + resolveSibling);
     }
 
 }
