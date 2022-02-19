@@ -12,6 +12,7 @@ import java.util.stream.Stream;
  * Files.move перемещает файл по новому пути. Без указания утрибутов, если файл по перемещаемому пути уже существует,
  * то кинет исключение.
  * С указанием атрибута StandardCopyOption.REPLACE_EXISTING - заменит содержимое файла, если он есть по пути перемещения
+ * Files.walk, Files.list, Files.find - возвращают Stream<Path>
  */
 public class FilesExample {
 
