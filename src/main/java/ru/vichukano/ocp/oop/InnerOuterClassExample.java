@@ -2,6 +2,7 @@ package ru.vichukano.ocp.oop;
 
 public class InnerOuterClassExample {
     public static String staticText = "Outer class text";
+    private static String privateStaticText = "Private static text";
     public String name = "Outer class";
     public String nonStaticText = "Outer class non static text";
     private int num = 0;
@@ -28,6 +29,8 @@ public class InnerOuterClassExample {
         void test() {
             //Доступ только к статическим членам внешнего класса
             System.out.println(staticText);
+            //В том числе и приватным
+            System.out.println(privateStaticText);
             //System.out.println(nonStaticText); -- non static нельзя
         }
     }
@@ -35,15 +38,42 @@ public class InnerOuterClassExample {
     private static class InnerStaticPrivate {
         public String name = "Inner static private";
         private int num = 4;
+
+        void test() {
+            //Доступ только к статическим членам внешнего класса
+            System.out.println(staticText);
+            //В том числе и приватным
+            System.out.println(privateStaticText);
+            //System.out.println(nonStaticText); -- non static нельзя
+        }
     }
 
     public class InnerPublic {
         public String name = "Inner public";
         private int num = 1;
+
+        void test() {
+            //Доступ к статическим и нестатическим членам внешнего класса
+            System.out.println(staticText);
+            //В том числе и к статическим приватным
+            System.out.println(privateStaticText);
+            //В том числе к нестатическим приватным полям внешнего класса
+            System.out.println(InnerOuterClassExample.this.num);
+            System.out.println(InnerOuterClassExample.this.name);
+            System.out.println(InnerOuterClassExample.this.nonStaticText);
+        }
     }
 
+    //Доступен только внутри внешнего класса
     private class InnerPrivate {
         public String name = "Inner private";
         private int num = 2;
+
+        void test() {
+            //Доступ к статическим и нестатическим членам внешнего класса
+            System.out.println(staticText);
+            System.out.println(InnerOuterClassExample.this.name);
+            System.out.println(InnerOuterClassExample.this.nonStaticText);
+        }
     }
 }
