@@ -7,6 +7,7 @@ public class InnerOuterClassExample {
     public String nonStaticText = "Outer class non static text";
     private int num = 0;
 
+    //Создание извне
     public static void main(String[] args) {
         InnerStaticPublic innerStaticPublic = new InnerOuterClassExample.InnerStaticPublic();
         InnerStaticPrivate innerStaticPrivate = new InnerOuterClassExample.InnerStaticPrivate();
@@ -15,11 +16,15 @@ public class InnerOuterClassExample {
     }
 
     //Использование вложенных классов в методах внешнего класса
+    //Внутри внешнего класса есть доступ ко всем членам внутреннего (static/nonstatic) класса, в том числе и private
     public void test() {
         InnerStaticPublic innerStaticPublic = new InnerStaticPublic();
         InnerStaticPrivate innerStaticPrivate = new InnerStaticPrivate();
         InnerPublic innerPublic = new InnerPublic();
         InnerPrivate innerPrivate = new InnerPrivate();
+        System.out.println(innerPrivate.name);
+        System.out.println(innerPublic.num);//Доступ к приватным полям
+        System.out.println(innerStaticPublic.num);
     }
 
     public static class InnerStaticPublic {
